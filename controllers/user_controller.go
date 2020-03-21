@@ -15,8 +15,13 @@ type UserController struct {
 func (c *UserController) Register() {
 
 	o := orm.NewOrm()
-	user := models.Users{Name: "Tom"}
-	id, err := o.Insert(&user)
-	fmt.Printf("ID: %d, ERR: %v\n", id, err)
+	o.Using("default")
+	user := models.User{Name: "Michael"}
+	err := o.Read(&user, "Name")
+	if err == orm.ErrNoRows {
+		id, err := o.Insert(&user)
+		fmt.Printf("ID: %d, ERR: %v\n", id, err)
+	}
+
 	c.TplName = "index.tpl"
 }
