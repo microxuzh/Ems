@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	_ "Ems/models"
 	"github.com/astaxie/beego"
 )
 
