@@ -10,5 +10,4 @@ type User struct {
 func init() {
 	orm.RegisterModel(new(User))
 	orm.RunSyncdb("default", false, true)
-
 }

@@ -16,11 +16,13 @@ func (c *UserController) Register() {
 
 	o := orm.NewOrm()
 	o.Using("default")
-	user := models.User{Name: "Michael"}
+	user := models.User{Name: "Vivian"}
 	err := o.Read(&user, "Name")
 	if err == orm.ErrNoRows {
 		id, err := o.Insert(&user)
-		fmt.Printf("ID: %d, ERR: %v\n", id, err)
+		if err != nil {
+			fmt.Printf("ID: %d, ERR: %v\n", id, err)
+		}
 	}
 
 	c.TplName = "index.tpl"
